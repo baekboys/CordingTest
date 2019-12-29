@@ -65,13 +65,13 @@ public class DiskController {
 		// TODO Auto-generated method stub
 		
 	}
-	
+
 	/**
 	  * @Method Name : solution
 	  * @작성일 : 2019. 12. 29.
 	  * @작성자 : 백명선
 	  * @변경이력 : 
-	  * @Method 설명 : 문제풀이 메소드
+	  * @Method 설명 :
 	  * @Return : int
 	  * @param jobs
 	  * @return
