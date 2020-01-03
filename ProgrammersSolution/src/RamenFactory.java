@@ -57,10 +57,10 @@ public class RamenFactory {
 		System.out.println("result : " + result);
 	}
 
-public int solution(int stock, int[] dates, int[] supplies, int k) {
-        int answer = 0;
+        public int solution(int stock, int[] dates, int[] supplies, int k) {
+                int answer = 0;
 
-        // 배열의 갯수만큼 초기화, 우선순위는 supplies의 크기가 큰순으로 한다.
+                // 배열의 갯수만큼 초기화, 우선순위는 supplies의 크기가 큰순으로 한다.
 		PriorityQueue<Integer> pq = new PriorityQueue<Integer>(dates.length, Collections.reverseOrder());
 
 		// 배열을 순회 할 index번호
@@ -80,6 +80,6 @@ public int solution(int stock, int[] dates, int[] supplies, int k) {
 			answer++;
 		}
 
-        return answer;
-    }
+                return answer;
+        }
 }
