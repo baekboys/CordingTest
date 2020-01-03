@@ -2,36 +2,36 @@
   * @FileName : RamenFactory.java
   * @Project : ProgrammersSolution
   * @Date : 2019. 12. 31. 
-  * @�ۼ��� : baek
-  * @�����̷� :
-  * @���α׷� ���� : https://programmers.co.kr/learn/courses/30/lessons/42629
+  * @작성자 : baek
+  * @변경이력 :
+  * @프로그램 설명 : https://programmers.co.kr/learn/courses/30/lessons/42629
   ******************************************************************************************
 
-��� ���忡���� �Ϸ翡 �а��縦 1�澿 ����մϴ�. ���� �а��縦 ���޹޴� ������ �������� ������ k�� ���Ŀ��� �а��縦 ���޹��� �� �ֱ� ������ �ؿ� ���忡�� �а��縦 �����ؾ� �մϴ�.
+라면 공장에서는 하루에 밀가루를 1톤씩 사용합니다. 원래 밀가루를 공급받던 공장의 고장으로 앞으로 k일 이후에야 밀가루를 공급받을 수 있기 때문에 해외 공장에서 밀가루를 수입해야 합니다.
 
-�ؿ� ���忡���� ���� �а��縦 ������ �� �ִ� ��¥�� ������ �˷��־���, ��� ���忡���� ��ۺ� ���̱� ���� �ּ����� Ƚ���� �а��縦 ���޹ް� �ͽ��ϴ�.
+해외 공장에서는 향후 밀가루를 공급할 수 있는 날짜와 수량을 알려주었고, 라면 공장에서는 운송비를 줄이기 위해 최소한의 횟수로 밀가루를 공급받고 싶습니다.
 
-���� ���忡 �����ִ� �а��� ���� stock, �а��� ���� ����(dates)�� �ش� ������ ���� ������ �а��� ����(supplies), ���� �������κ��� ���޹��� �� �ִ� ���� k�� �־��� ��, �а��簡 �������� �ʰ� ������ ��ϱ� ���ؼ� �ּ��� �� �� �ؿ� �������κ��� �а��縦 ���޹޾ƾ� �ϴ����� return �ϵ��� solution �Լ��� �ϼ��ϼ���.
+현재 공장에 남아있는 밀가루 수량 stock, 밀가루 공급 일정(dates)과 해당 시점에 공급 가능한 밀가루 수량(supplies), 원래 공장으로부터 공급받을 수 있는 시점 k가 주어질 때, 밀가루가 떨어지지 않고 공장을 운영하기 위해서 최소한 몇 번 해외 공장으로부터 밀가루를 공급받아야 하는지를 return 하도록 solution 함수를 완성하세요.
 
-dates[i]���� i��° ���� �������� ���������, supplies[i]���� dates[i] ��¥�� ���� ������ �а��� ������ ��� �ֽ��ϴ�.
+dates[i]에는 i번째 공급 가능일이 들어있으며, supplies[i]에는 dates[i] 날짜에 공급 가능한 밀가루 수량이 들어 있습니다.
 
-���ѻ���
-stock�� �ִ� �а���� ����(0�� ����)���� ���˴ϴ�.
-stock�� k�� 2 �̻� 100,000 �����Դϴ�.
-dates�� �� ���Ҵ� 1 �̻� k �����Դϴ�.
-supplies�� �� ���Ҵ� 1 �̻� 1,000 �����Դϴ�.
-dates�� supplies�� ���̴� 1 �̻� 20,000 �����Դϴ�.
-k�� °���� �а��簡 ����� ���޵Ǳ� ������ k-1�Ͽ� ����� ���������� Ȯ���ϸ� �˴ϴ�.
-dates�� ����ִ� ��¥�� �������� ���ĵǾ� �ֽ��ϴ�.
-dates�� ����ִ� ��¥�� ���޵Ǵ� �а���� �۾� ���� �� ������ ���޵Ǵ� ���� �������� �մϴ�. ���� ��� 9��°�� �а��簡 �ٴڳ�����, 10��°�� ���޹����� 10��°���� ������ ��� �� �ֽ��ϴ�.
-�а��簡 �ٴڳ��� ���� �־����� �ʽ��ϴ�.
-����� ��
+제한사항
+stock에 있는 밀가루는 오늘(0일 이후)부터 사용됩니다.
+stock과 k는 2 이상 100,000 이하입니다.
+dates의 각 원소는 1 이상 k 이하입니다.
+supplies의 각 원소는 1 이상 1,000 이하입니다.
+dates와 supplies의 길이는 1 이상 20,000 이하입니다.
+k일 째에는 밀가루가 충분히 공급되기 때문에 k-1일에 사용할 수량까지만 확보하면 됩니다.
+dates에 들어있는 날짜는 오름차순 정렬되어 있습니다.
+dates에 들어있는 날짜에 공급되는 밀가루는 작업 시작 전 새벽에 공급되는 것을 기준으로 합니다. 예를 들어 9일째에 밀가루가 바닥나더라도, 10일째에 공급받으면 10일째에는 공장을 운영할 수 있습니다.
+밀가루가 바닥나는 경우는 주어지지 않습니다.
+입출력 예
 stock	dates	supplies	k	result
 4	[4,10,15]	[20,5,10]	30	2
-����� �� ����
-���� �а��簡 4�� ���� �ֱ� ������ ���ð� 1�� ��~3�� �ı��� ����ϰ� ���� ��� �а��縦 �� ����մϴ�. ���� 4�� �Ŀ��� �ݵ�� �а��縦 ���޹޾ƾ� �մϴ�.
-4��° ���޹ް� ���� 15�� ���� ��ħ���� 9���� �а��簡 �����ְ� �ǰ�, �̶� 10���� �� ���޹����� 19���� �����ְ� �˴ϴ�. 15�� ���ĺ��� 29�� ���ı��� �ʿ��� �а���� 15���̹Ƿ� �� �̻��� ������ �ʿ� �����ϴ�.
-���� �� 2ȸ�� �а��縦 ���޹����� �˴ϴ�.
+입출력 예 설명
+현재 밀가루가 4톤 남아 있기 때문에 오늘과 1일 후~3일 후까지 사용하고 나면 모든 밀가루를 다 사용합니다. 따라서 4일 후에는 반드시 밀가루를 공급받아야 합니다.
+4일째 공급받고 나면 15일 이후 아침에는 9톤의 밀가루가 남아있게 되고, 이때 10톤을 더 공급받으면 19톤이 남아있게 됩니다. 15일 이후부터 29일 이후까지 필요한 밀가루는 15톤이므로 더 이상의 공급은 필요 없습니다.
+따라서 총 2회의 밀가루를 공급받으면 됩니다.
   */
 public class RamenFactory {
 
@@ -57,8 +57,29 @@ public class RamenFactory {
 		System.out.println("result : " + result);
 	}
 
-	public int solution(int stock, int[] dates, int[] supplies, int k) {
+public int solution(int stock, int[] dates, int[] supplies, int k) {
         int answer = 0;
+
+        // 배열의 갯수만큼 초기화, 우선순위는 supplies의 크기가 큰순으로 한다.
+		PriorityQueue<Integer> pq = new PriorityQueue<Integer>(dates.length, Collections.reverseOrder());
+
+		// 배열을 순회 할 index번호
+		int i = 0;
+
+		// 재고량(stock)만큼 일수를 버틸 수있으므로, 공장이 복구되는 K일 보다 커질때까지 현재 재고량에 가장 큰 공급량을 더함
+		while(stock < k) {
+			// 현재 재고량보다 작은 모든 공급일의 공급량을 우선순위큐에 적재 시킨다.
+			while(i < dates.length  && dates[i] <= stock) {
+				pq.add(supplies[i]);
+				// 추가된 공급량은 이제 더이상 넣을 필요가 없으므로 인덱스번호 증가
+				i++;
+			}
+
+			// 공급량이 가장 큰 것부터 재고량에 적재하고 횟수를 증가시킴
+			stock += pq.poll();
+			answer++;
+		}
+
         return answer;
     }
 }
