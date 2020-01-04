@@ -1,3 +1,6 @@
+import java.util.Collections;
+import java.util.PriorityQueue;
+
 /**
   * @FileName : RamenFactory.java
   * @Project : ProgrammersSolution
@@ -58,28 +61,28 @@ public class RamenFactory {
 	}
 
         public int solution(int stock, int[] dates, int[] supplies, int k) {
-                int answer = 0;
 
-                // 배열의 갯수만큼 초기화, 우선순위는 supplies의 크기가 큰순으로 한다.
-		PriorityQueue<Integer> pq = new PriorityQueue<Integer>(dates.length, Collections.reverseOrder());
+			int answer = 0;// 배열의 갯수만큼 초기화, 우선순위는 supplies의 크기가 큰순으로 한다.
 
-		// 배열을 순회 할 index번호
-		int i = 0;
+			PriorityQueue<Integer> pq = new PriorityQueue<Integer>(dates.length, Collections.reverseOrder());
 
-		// 재고량(stock)만큼 일수를 버틸 수있으므로, 공장이 복구되는 K일 보다 커질때까지 현재 재고량에 가장 큰 공급량을 더함
-		while(stock < k) {
-			// 현재 재고량보다 작은 모든 공급일의 공급량을 우선순위큐에 적재 시킨다.
-			while(i < dates.length  && dates[i] <= stock) {
-				pq.add(supplies[i]);
-				// 추가된 공급량은 이제 더이상 넣을 필요가 없으므로 인덱스번호 증가
-				i++;
+			// 배열을 순회 할 index번호
+			int i = 0;
+
+			// 재고량(stock)만큼 일수를 버틸 수있으므로, 공장이 복구되는 K일 보다 커질때까지 현재 재고량에 가장 큰 공급량을 더함
+			while(stock < k) {
+				// 현재 재고량보다 작은 모든 공급일의 공급량을 우선순위큐에 적재 시킨다.
+				while(i < dates.length  && dates[i] <= stock) {
+					pq.add(supplies[i]);
+					// 추가된 공급량은 이제 더이상 넣을 필요가 없으므로 인덱스번호 증가
+					i++;
+				}
+
+				// 공급량이 가장 큰 것부터 재고량에 적재하고 횟수를 증가시킴
+				stock += pq.poll();
+				answer++;
 			}
 
-			// 공급량이 가장 큰 것부터 재고량에 적재하고 횟수를 증가시킴
-			stock += pq.poll();
-			answer++;
-		}
-
-                return answer;
+			return answer;
         }
 }
