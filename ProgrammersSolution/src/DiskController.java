@@ -1,3 +1,6 @@
+import java.util.Comparator;
+import java.util.PriorityQueue;
+
 /**
  * The Class DiskController.
  *
@@ -63,7 +66,11 @@ public class DiskController {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		
+		int [][] jobs = {{0, 3}, {1, 9}, {2, 9}, {20, 4}, {21,6}, {23,1}};
+
+		DiskController dc = new DiskController();
+		int result = dc.solution(jobs);
+		System.out.println(result);
 	}
 
 	/**
@@ -78,6 +85,90 @@ public class DiskController {
 	  */
 	public int solution(int[][] jobs) {
 		int answer = 0;
+
+		class Job {
+			int start_ms;
+			int process_ms;
+
+			public Job(int start_ms, int process_ms) {
+				this.start_ms = start_ms;
+				this.process_ms = process_ms;
+			}
+		}
+
+		PriorityQueue<Job> fifo_job_queue = new PriorityQueue<>(jobs.length, new Comparator<Job>() {
+			@Override
+			public int compare(Job o1, Job o2) {
+				if(o1.start_ms < o2.start_ms) {
+					return -1;
+				}
+				if(o1.start_ms > o2.start_ms) {
+					return 1;
+				}
+				return 0;
+			}
+		});
+
+		PriorityQueue<Job> sjf_job_queue = new PriorityQueue<>(jobs.length, new Comparator<Job>() {
+			@Override
+			public int compare(Job o1, Job o2) {
+				if(o1.process_ms < o2.process_ms) {
+					return -1;
+				}
+				if(o1.process_ms > o2.process_ms) {
+					return 1;
+				}
+
+				if(o1.process_ms == o2.process_ms) {
+					if(o1.start_ms < o2.start_ms) {
+						return -1;
+					}
+					if(o1.start_ms > o2.start_ms) {
+						return 1;
+					}
+				}
+
+				return 0;
+			}
+		});
+
+		for(int i = 0 ; i < jobs.length ; i++) {
+			Job job = new Job(jobs[i][0], jobs[i][1]);
+
+			fifo_job_queue.add(job);
+		}
+
+		int curr_ms = 0;
+		int total_process_time = 0;
+
+		while(!fifo_job_queue.isEmpty()) {
+			Job job = fifo_job_queue.poll();
+			curr_ms = job.start_ms + job.process_ms;
+			total_process_time = job.process_ms;
+
+			Boolean end_flag = true;
+			while(end_flag) {
+				Job next_job = fifo_job_queue.peek();
+				if(next_job == null || next_job.start_ms > curr_ms) {
+					end_flag = false;
+				}
+				else {
+					sjf_job_queue.add(fifo_job_queue.poll());
+				}
+			}
+
+			while(!sjf_job_queue.isEmpty()) {
+				Job j = sjf_job_queue.poll();
+				int end_ms = curr_ms + j.process_ms;
+				int process_ms = end_ms - j.start_ms;
+				total_process_time += process_ms;
+
+				curr_ms = end_ms;
+			}
+		}
+
+		answer = total_process_time / jobs.length;
+
 		return answer;
 	}
 }
