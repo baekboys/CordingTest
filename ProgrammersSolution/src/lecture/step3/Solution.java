@@ -1,10 +1,6 @@
-package com.baek.step3;
+package step3;
 
-import java.lang.reflect.Array;
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 /*
 https://programmers.co.kr/learn/courses/10302/lessons/62949
@@ -30,28 +26,53 @@ class Solution {
     public int solution(int[] budgets, int M) {
         int answer = 0;
 
-        /*int sum = IntStream.of(budgets).sum();
-        if(M >= sum) {
-            return IntStream.of(budgets).max().getAsInt();
-        }*/
-
-        ArrayList<Integer> arrayList = new ArrayList<>(budgets.length);
+        ArrayList<Integer> integerArrayList = new ArrayList<>(budgets.length);
 
         int sum = 0;
         for (int i: budgets
              ) {
-            arrayList.add(i);
+            integerArrayList.add(i);
             sum += i;
         }
-        Collections.sort(arrayList);
+        Collections.sort(integerArrayList);
 
-        int min = a
+        int min = integerArrayList.get(0);
+        int max = integerArrayList.get(integerArrayList.size()-1);
 
-        if(M >= sum) {
-            return arrayList.get(arrayList.size()-1);
+        if( M >= sum) {
+            return max;
         }
 
-        System.out.println(arrayList);
+        int index = (min + max) / 2;
+        boolean stop_flag = true;
+        while (stop_flag) {
+            int add = 0;
+            int size = integerArrayList.size();
+
+            for (int i = 0; i < size ; i++) {
+                int temp_budget = integerArrayList.get(i);
+
+                if(temp_budget >= index) {
+                    add += (size -i) * index;
+                    break;
+                }
+
+                add += temp_budget;
+            }
+
+            if(add == M || max - min <= 1) {
+                answer = index;
+                stop_flag = false;
+            }
+            else if (add > M) {
+                max = index;
+                index = (min + index) / 2;
+            }
+            else if (add < M) {
+                min = index;
+                index = (max + index) / 2;
+            }
+        }
 
         return answer;
     }

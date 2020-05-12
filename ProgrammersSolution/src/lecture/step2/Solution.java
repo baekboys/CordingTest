@@ -1,4 +1,4 @@
-package com.baek.step2;
+package step2;
 
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;

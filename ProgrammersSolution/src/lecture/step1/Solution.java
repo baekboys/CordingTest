@@ -1,4 +1,4 @@
-package com.baek.step1;
+package step1;
 
 /*
 https://programmers.co.kr/learn/courses/10302/lessons/62946
