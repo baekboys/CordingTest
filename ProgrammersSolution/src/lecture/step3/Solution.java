@@ -1,4 +1,4 @@
-package step3;
+package lecture.step3;
 
 import java.util.*;
 

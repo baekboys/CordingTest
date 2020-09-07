@@ -1,4 +1,4 @@
-package step2;
+package lecture.step2;
 
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
